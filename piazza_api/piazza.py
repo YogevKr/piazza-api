@@ -9,6 +9,7 @@ class Piazza(object):
     """
     def __init__(self, piazza_rpc=None):
         self._rpc_api = piazza_rpc if piazza_rpc else None
+        self.session = None
 
     def user_login(self, email=None, password=None):
         """Login with email, password and get back a session cookie
@@ -20,6 +21,8 @@ class Piazza(object):
         """
         self._rpc_api = PiazzaRPC()
         self._rpc_api.user_login(email=email, password=password)
+        self.session =  self._rpc_api.session
+
 
     def demo_login(self, auth=None, url=None):
         """Authenticate with a "Share Your Class" URL using a demo user.
